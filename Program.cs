@@ -6,6 +6,7 @@ namespace lists
     class Program
     {
         static void Main(string[] args)
+        //PART ONE: Main excercise         
         {
             List<string> planetList = new List<string>() { "Mercury", "Mars" };
             // Add() Jupiter and Saturn at the end of the list.
@@ -39,6 +40,51 @@ namespace lists
             // {
             //     Console.WriteLine(item);
             // }
+            //         }
+            //     }
+            // }
+
+            //PART TWO: Iterating over planets
+            // Create another list containing dictionaries. Each dictionary will hold the name of a spacecraft that we have launched, and the name of the planet that it has visited. If it visited more than one planet, just pick one.
+            List<Dictionary<string, string>> probes = new List<Dictionary<string, string>>();
+
+            Dictionary<string, string> viking = new Dictionary<string, string>();
+            viking["Mars"] = "Viking";
+
+            Dictionary<string, string> opportunity = new Dictionary<string, string>() {
+                {"Mars", "Opportunity"}
+            };
+
+            Dictionary<string, string> mariner10 = new Dictionary<string, string>() {
+                {"Mercury", "Mariner10"}
+            };
+            //all probes to list
+            probes.Add(viking);
+            probes.Add(opportunity);
+            probes.Add(mariner10);
+
+
+            // Iterate over your list of planets from above, and inside that loop, iterate over the list of dictionaries. Write to the console, for each planet, which satellites have visited which planet.
+
+            foreach (string planet in planetList)
+            {
+                //build an initial list of sting to hold the matching probe names
+                List<string> visitedProbes = new List<string>();
+                //iterate over all probes
+                foreach (Dictionary<string, string> probe in probes)
+                {
+                    //Does the current planet name in th dictionary match the name of the planet in planet list
+                    if (probe.ContainsKey(planet))
+                    {
+                        visitedProbes.Add(probe[planet]);
+                    }
+                }
+                //output the name of the planet and comma serparted list of mathcing probes
+                Console.WriteLine($"{planet}: {String.Join(",", visitedProbes)}");
+            }
         }
     }
 }
+
+
+
